@@ -33,10 +33,12 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // check SP
-        if checkForNamePrefernce() != ""{
+        //in the first runing we need to make all rows as notes except super, and what inside that if
+        if checkForNamePrefernce() == ""{
             showNameLBL.isHidden = true
             startGameBTN.isHidden = true
         }
+        
         else{
             confirmNameBTN.isHidden = true
             insertNameLBL.isHidden = true
@@ -59,6 +61,7 @@ class ViewController: UIViewController {
             saveSidePreference()
             
         }
+         
         
     }
 

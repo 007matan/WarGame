@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FC0BEC782A38A07D00974402 /* ConcViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC0BEC772A38A07D00974402 /* ConcViewController.swift */; };
 		FCC93B022A3672930063D5DF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCC93B012A3672930063D5DF /* AppDelegate.swift */; };
 		FCC93B042A3672930063D5DF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCC93B032A3672930063D5DF /* SceneDelegate.swift */; };
 		FCC93B062A3672930063D5DF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCC93B052A3672930063D5DF /* ViewController.swift */; };
@@ -17,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		FC0BEC772A38A07D00974402 /* ConcViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConcViewController.swift; sourceTree = "<group>"; };
 		FCC93AFE2A3672930063D5DF /* WarGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WarGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCC93B012A3672930063D5DF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FCC93B032A3672930063D5DF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -62,6 +64,7 @@
 				FCC93B032A3672930063D5DF /* SceneDelegate.swift */,
 				FCC93B052A3672930063D5DF /* ViewController.swift */,
 				FCC93B152A37575C0063D5DF /* GamePlayViewController.swift */,
+				FC0BEC772A38A07D00974402 /* ConcViewController.swift */,
 				FCC93B072A3672930063D5DF /* Main.storyboard */,
 				FCC93B0A2A3672940063D5DF /* Assets.xcassets */,
 				FCC93B0C2A3672940063D5DF /* LaunchScreen.storyboard */,
@@ -143,6 +146,7 @@
 			files = (
 				FCC93B062A3672930063D5DF /* ViewController.swift in Sources */,
 				FCC93B022A3672930063D5DF /* AppDelegate.swift in Sources */,
+				FC0BEC782A38A07D00974402 /* ConcViewController.swift in Sources */,
 				FCC93B162A37575C0063D5DF /* GamePlayViewController.swift in Sources */,
 				FCC93B042A3672930063D5DF /* SceneDelegate.swift in Sources */,
 			);

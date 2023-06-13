@@ -22,6 +22,11 @@ class GamePlayViewController: UIViewController {
     var points_player : Int!
     var points_pc : Int!
     
+    struct GameKeys{
+        static let prefernceKeyName = "prefernceKeyWinner"
+        static let prefernceKeySide = "prefernceKeyPlayerPoints"
+    }
+    
     @IBOutlet weak var timerLBL: UILabel!
     @IBOutlet weak var eastSideCardIMG: UIImageView!
     @IBOutlet weak var eastSidePointsLBL: UILabel!
@@ -37,6 +42,7 @@ class GamePlayViewController: UIViewController {
         updatePlayerSide()
         
         updatePlayersLabels()
+        
         
         mainFunc()
         
@@ -64,6 +70,7 @@ class GamePlayViewController: UIViewController {
             
             //check if win or lose
                 //Take care of win lose the game, new activity
+            
             
             //we wait 3 sec
             
@@ -95,9 +102,15 @@ class GamePlayViewController: UIViewController {
         let myLat = defaults.double(forKey: ViewController.Keys.prefernceKeySide)
         return myLat
     }
-    func checkForNamePrefernce() -> String{
+    func checkForNamePrefernce() -> String!{
         let name = defaults.string(forKey: ViewController.Keys.prefernceKeyName)
         return name!
+    }
+    
+    func endGame(){
+        let conc_vc = storyboard?.instantiateViewController(identifier: "conc_vc") as! ConcViewController
+        present(conc_vc, animated: true)
+        
     }
     
 }

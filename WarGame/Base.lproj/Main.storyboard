@@ -279,6 +279,60 @@
             </objects>
             <point key="canvasLocation" x="314" y="-376"/>
         </scene>
+        <!--Conc View Controller-->
+        <scene sceneID="nCH-JX-NnS">
+            <objects>
+                <viewController storyboardIdentifier="conc_vc" id="9Nd-EN-GmZ" customClass="ConcViewController" customModule="WarGame" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="SMu-Ad-blg">
+                        <rect key="frame" x="0.0" y="0.0" width="852" height="393"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The winner is: " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JMZ-sr-dgJ">
+                                <rect key="frame" x="326" y="120" width="200" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="4vl-k7-oGp"/>
+                                    <constraint firstAttribute="width" constant="200" id="kSM-A6-8bI"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Score: " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qnP-Yt-NWM">
+                                <rect key="frame" x="326" y="210" width="200" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="DhM-c5-5eo"/>
+                                    <constraint firstAttribute="width" constant="200" id="adH-h4-fRA"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gIn-AC-yMI">
+                                <rect key="frame" x="351" y="290" width="150" height="59"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="SlP-c7-z7p"/>
+                                    <constraint firstAttribute="height" constant="59" id="qwr-Ig-Bqi"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="tinted" title="BACK TO MENU"/>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Tqi-Xj-KBy"/>
+                        <color key="backgroundColor" red="0.63738113785305262" green="0.72803585338978949" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="JMZ-sr-dgJ" firstAttribute="top" secondItem="Tqi-Xj-KBy" secondAttribute="top" constant="120" id="1rV-U0-eSV"/>
+                            <constraint firstItem="qnP-Yt-NWM" firstAttribute="centerX" secondItem="Tqi-Xj-KBy" secondAttribute="centerX" id="86g-b7-fkY"/>
+                            <constraint firstItem="qnP-Yt-NWM" firstAttribute="top" secondItem="JMZ-sr-dgJ" secondAttribute="bottom" constant="40" id="NsN-Uj-1be"/>
+                            <constraint firstItem="gIn-AC-yMI" firstAttribute="centerX" secondItem="Tqi-Xj-KBy" secondAttribute="centerX" id="UGn-hx-901"/>
+                            <constraint firstItem="JMZ-sr-dgJ" firstAttribute="centerX" secondItem="Tqi-Xj-KBy" secondAttribute="centerX" id="YQ1-7N-TaE"/>
+                            <constraint firstItem="gIn-AC-yMI" firstAttribute="top" secondItem="qnP-Yt-NWM" secondAttribute="bottom" constant="30" id="mAI-Vp-kBp"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="krV-ey-Ql4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1399" y="-219"/>
+        </scene>
     </scenes>
     <resources>
         <image name="alarm" width="210" height="239"/>
