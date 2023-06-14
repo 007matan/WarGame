@@ -34,7 +34,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // check SP
         //in the first runing we need to make all rows as notes except super, and what inside that if
-        if checkForNamePrefernce() == ""{
+        if checkForNamePrefernce() == "Nun"{
             showNameLBL.isHidden = true
             startGameBTN.isHidden = true
         }
@@ -106,8 +106,8 @@ class ViewController: UIViewController {
     }
     
     func checkForNamePrefernce() -> String{
-        let name = defaults.string(forKey: Keys.prefernceKeyName)
-        return name!
+        let name = defaults.string(forKey: Keys.prefernceKeyName) ?? "Nun"
+        return name
     }
     
     func saveSidePreference(){

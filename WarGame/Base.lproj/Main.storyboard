@@ -11,7 +11,7 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="WarGame" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="menu_vc" id="BYZ-38-t0r" customClass="ViewController" customModule="WarGame" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="852" height="393"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -315,6 +315,9 @@
                                 </constraints>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="tinted" title="BACK TO MENU"/>
+                                <connections>
+                                    <action selector="returnToMenu:" destination="9Nd-EN-GmZ" eventType="touchUpInside" id="CgG-GN-p8S"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Tqi-Xj-KBy"/>
@@ -328,6 +331,11 @@
                             <constraint firstItem="gIn-AC-yMI" firstAttribute="top" secondItem="qnP-Yt-NWM" secondAttribute="bottom" constant="30" id="mAI-Vp-kBp"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="backBTN" destination="gIn-AC-yMI" id="PlJ-IY-SsO"/>
+                        <outlet property="scoreLBL" destination="qnP-Yt-NWM" id="n6U-uv-0U6"/>
+                        <outlet property="winnerLBL" destination="JMZ-sr-dgJ" id="K0z-8c-Kzb"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="krV-ey-Ql4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
