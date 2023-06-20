@@ -243,6 +243,18 @@
                                     <constraint firstAttribute="height" constant="240" id="nUN-7w-rfO"/>
                                 </constraints>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JKf-sc-kc3">
+                                <rect key="frame" x="388.66666666666669" y="268.66666666666669" width="75" height="35"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="75" id="9Cv-zY-qYU"/>
+                                    <constraint firstAttribute="height" constant="35" id="nWb-UP-Xg7"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="gray" title="End"/>
+                                <connections>
+                                    <action selector="concGame:" destination="NLE-cZ-bqr" eventType="touchUpInside" id="PGN-Id-R1P"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="kTk-0N-KAF"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -252,10 +264,12 @@
                             <constraint firstItem="zkg-GQ-qhf" firstAttribute="top" secondItem="kTk-0N-KAF" secondAttribute="top" constant="10" id="D4F-lp-et7"/>
                             <constraint firstItem="kTk-0N-KAF" firstAttribute="trailing" secondItem="F45-Id-Sz0" secondAttribute="trailing" constant="48" id="Nco-wI-1XQ"/>
                             <constraint firstItem="kTk-0N-KAF" firstAttribute="trailing" secondItem="wFa-Kk-fCW" secondAttribute="trailing" constant="10" id="NnV-cD-CSi"/>
+                            <constraint firstItem="JKf-sc-kc3" firstAttribute="centerX" secondItem="kTk-0N-KAF" secondAttribute="centerX" id="POp-yI-K8N"/>
                             <constraint firstItem="FId-VA-VNf" firstAttribute="centerX" secondItem="zkg-GQ-qhf" secondAttribute="centerX" id="PTB-Cy-jSW"/>
                             <constraint firstItem="vor-F8-ByA" firstAttribute="centerX" secondItem="kTk-0N-KAF" secondAttribute="centerX" id="Pfc-0h-ocW"/>
                             <constraint firstItem="HzY-Ac-1PL" firstAttribute="centerY" secondItem="kTk-0N-KAF" secondAttribute="centerY" constant="40" id="U9b-XH-aKq"/>
                             <constraint firstItem="2RA-zm-SF5" firstAttribute="top" secondItem="wFa-Kk-fCW" secondAttribute="bottom" constant="10" id="VdK-du-99E"/>
+                            <constraint firstItem="JKf-sc-kc3" firstAttribute="centerY" secondItem="kTk-0N-KAF" secondAttribute="centerY" constant="100" id="aHf-Om-s6p"/>
                             <constraint firstItem="2RA-zm-SF5" firstAttribute="centerX" secondItem="wFa-Kk-fCW" secondAttribute="centerX" id="hG8-Sp-JAj"/>
                             <constraint firstItem="F45-Id-Sz0" firstAttribute="centerY" secondItem="kTk-0N-KAF" secondAttribute="centerY" constant="50" id="imQ-Yz-yaH"/>
                             <constraint firstItem="FId-VA-VNf" firstAttribute="top" secondItem="zkg-GQ-qhf" secondAttribute="bottom" constant="10" id="ixX-Ad-BfU"/>
@@ -269,6 +283,7 @@
                         <outlet property="eastSideCardIMG" destination="F45-Id-Sz0" id="K6D-uX-jtX"/>
                         <outlet property="eastSideNameLBL" destination="wFa-Kk-fCW" id="RYZ-tK-5bw"/>
                         <outlet property="eastSidePointsLBL" destination="2RA-zm-SF5" id="Ike-kL-lsF"/>
+                        <outlet property="endGameBTN" destination="JKf-sc-kc3" id="Txf-zi-a02"/>
                         <outlet property="timerLBL" destination="HzY-Ac-1PL" id="EJI-uq-fCa"/>
                         <outlet property="westSideCardsIMG" destination="elL-fN-DRy" id="W6g-kF-tet"/>
                         <outlet property="westSidePointsLBL" destination="FId-VA-VNf" id="FGM-ke-334"/>

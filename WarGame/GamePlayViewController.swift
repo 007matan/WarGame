@@ -29,6 +29,7 @@ class GamePlayViewController: UIViewController {
         static let prefernceKeyPoints = "prefernceKeyPlayerPoints"
     }
     
+    @IBOutlet weak var endGameBTN: UIButton!
     @IBOutlet weak var timerLBL: UILabel!
     @IBOutlet weak var eastSideCardIMG: UIImageView!
     @IBOutlet weak var eastSidePointsLBL: UILabel!
@@ -37,9 +38,11 @@ class GamePlayViewController: UIViewController {
     @IBOutlet weak var westSidePointsLBL: UILabel!
     @IBOutlet weak var westSodeNameLBL: UILabel!
     
+    var gameEnd = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        endGameBTN.isHidden = true
         
         updatePlayerSide()
         
@@ -59,30 +62,31 @@ class GamePlayViewController: UIViewController {
             card_pack_player = card_pack[0...card_pack.count/2 - 1] //the wester pack goes to the player
             card_pack_pc = card_pack[card_pack.count/2...card_pack.count - 1]
         }else{
-            var card_pack_pc = card_pack[0...card_pack.count/2 - 1]
-            var card_pack_player = card_pack[card_pack.count/2...card_pack.count - 1] //the easter pack goes to the player
+            card_pack_pc = card_pack[0...card_pack.count/2 - 1]
+            card_pack_player = card_pack[card_pack.count/2...card_pack.count - 1] //the easter pack goes to the player
         }
-        
-        for i in 0...card_pack.count/2 - 1{
+        var i = 0
+        while i <= card_pack.count/2 - 1 && gameEnd == false{
+        //for i in 0...card_pack.count/2 - 1{
             //in every sec for five sec sub from the remaining timer in timer 1
         
-                sleep(1)
+               // sleep(1)
             
             self.timerLBL.text = "4"
             
-                sleep(1)
+                //sleep(1)
             
             self.timerLBL.text = "3"
             
-                sleep(1)
+               // sleep(1)
             
             self.timerLBL.text = "2"
             
-                sleep(1)
+               // sleep(1)
             
             self.timerLBL.text = "1"
             
-                sleep(1)
+               // sleep(1)
             
 
             self.timerLBL.text = "0"
@@ -122,42 +126,46 @@ class GamePlayViewController: UIViewController {
                 //maybe add a button cause move directly to new acivity maybe problematic
             if(points_player == 10){
                 //SP Winner
-                winner = checkForNamePrefernce()
-                saveWinnerPreference()
+               // winner = checkForNamePrefernce()
+              //  saveWinnerPreference()
                 
-                savePointsPreference(my_points: 10)
+               // savePointsPreference(my_points: 10)
                 //new viewController
-                endGame()
+               // endGame()
+                gameEnd = true
             }
             if(points_pc == 10){
                 //SP Winner
-                winner = "PC"
-                saveWinnerPreference()
+                //winner = "PC"
+                //saveWinnerPreference()
                 
-                savePointsPreference(my_points: 10)
+                //savePointsPreference(my_points: 10)
                 //new viewController
-                endGame()
+                //endGame()
+                gameEnd = true
             }
             //we wait 3 sec
             self.timerLBL.text = "3"
             do{
-                sleep(1)
+               // sleep(1)
             }
             self.timerLBL.text = "2"
             do{
-                sleep(1)
+               // sleep(1)
             }
             self.timerLBL.text = "1"            //"Turn off" cards
             do{
-                sleep(1)
+                //sleep(1)
             }
             self.timerLBL.text = "0"
             self.eastSideCardIMG.image = #imageLiteral(resourceName: "card_back")
             self.westSideCardsIMG.image = #imageLiteral(resourceName: "card_back")
             self.timerLBL.text = "5"
+            
+            i = i + 1
         }
         
-        //check how the winner
+        //check how the winner, at start was here to close the case of tie
         if(points_pc >= points_player){
             //SP Winner
             winner = "PC"
@@ -165,7 +173,8 @@ class GamePlayViewController: UIViewController {
             
             savePointsPreference(my_points: points_pc)
             //new viewController
-            endGame()
+            //endGame()
+            
         }
         else{
             //SP Winner
@@ -174,9 +183,11 @@ class GamePlayViewController: UIViewController {
             
             savePointsPreference(my_points: points_player)
             //new viewController
-            endGame()
+            //endGame()
             
         }
+        
+        endGameBTN.isHidden = false
     }
     
     func getCardIndices(card1Image: UIImage, card2Image: UIImage) -> (Int?, Int?) {
@@ -193,8 +204,9 @@ class GamePlayViewController: UIViewController {
             if let card2Index = self.cards_pack_hearts.firstIndex(of: card2Image) {
                 return (card1Index, card2Index)
             }
-            if let card2Index = self.cards_pack_jokers.firstIndex(of: card2Image) {
-                return (card1Index, 14)
+            if var card2Index = self.cards_pack_jokers.firstIndex(of: card2Image) {
+                card2Index = 14
+                return (card1Index, card2Index)
             }
         }
         if let card1Index = self.cards_pack_clovers.firstIndex(of: card1Image) {
@@ -210,8 +222,9 @@ class GamePlayViewController: UIViewController {
             if let card2Index = self.cards_pack_hearts.firstIndex(of: card2Image) {
                 return (card1Index, card2Index)
             }
-            if let card2Index = self.cards_pack_jokers.firstIndex(of: card2Image) {
-                return (card1Index, 14)
+            if var card2Index = self.cards_pack_jokers.firstIndex(of: card2Image) {
+                card2Index = 14
+                return (card1Index, card2Index)
             }
         }
         if let card1Index = self.cards_pack_leafs.firstIndex(of: card1Image) {
@@ -227,8 +240,9 @@ class GamePlayViewController: UIViewController {
             if let card2Index = self.cards_pack_hearts.firstIndex(of: card2Image) {
                 return (card1Index, card2Index)
             }
-            if let card2Index = self.cards_pack_jokers.firstIndex(of: card2Image) {
-                return (card1Index, 14)
+            if var card2Index = self.cards_pack_jokers.firstIndex(of: card2Image) {
+                card2Index = 14
+                return (card1Index, card2Index)
             }
         }
         if let card1Index = self.cards_pack_hearts.firstIndex(of: card1Image) {
@@ -244,25 +258,28 @@ class GamePlayViewController: UIViewController {
             if let card2Index = self.cards_pack_diamonds.firstIndex(of: card2Image) {
                 return (card1Index, card2Index)
             }
-            if let card2Index = self.cards_pack_jokers.firstIndex(of: card2Image) {
-                return (card1Index, 14)
+            if var card2Index = self.cards_pack_jokers.firstIndex(of: card2Image) {
+                card2Index = 14
+                return (card1Index, card2Index)
             }
         }
-        if let card1Index = self.cards_pack_jokers.firstIndex(of: card1Image) {
-            if let card2Index = self.cards_pack_jokers.firstIndex(of: card2Image) {
-                        return (14, 14)
+        if var card1Index = self.cards_pack_jokers.firstIndex(of: card1Image) {
+            card1Index = 14
+            if var card2Index = self.cards_pack_jokers.firstIndex(of: card2Image) {
+                card2Index = 14
+                        return (card1Index, card2Index)
                     }
             if let card2Index = self.cards_pack_clovers.firstIndex(of: card2Image) {
-                return (14, card2Index)
+                return (card1Index, card2Index)
             }
             if let card2Index = self.cards_pack_leafs.firstIndex(of: card2Image) {
-                return (14, card2Index)
+                return (card1Index, card2Index)
             }
             if let card2Index = self.cards_pack_hearts.firstIndex(of: card2Image) {
-                return (14, card2Index)
+                return (card1Index, card2Index)
             }
             if let card2Index = self.cards_pack_diamonds.firstIndex(of: card2Image) {
-                return (14,card2Index)
+                return (card1Index,card2Index)
             }
         }
         return (nil, nil) // Return nil if either card image is not found in any deck }
@@ -305,6 +322,10 @@ class GamePlayViewController: UIViewController {
         let conc_vc = storyboard?.instantiateViewController(identifier: "conc_vc") as! ConcViewController
         present(conc_vc, animated: true)
         
+    }
+    
+    @IBAction func concGame(_ sender: UIButton) {
+        endGame()
     }
     
 }
