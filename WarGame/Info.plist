@@ -21,5 +21,9 @@
 			</array>
 		</dict>
 	</dict>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Your location is shared to the admin for efficient purposes</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Your location is shared to the admin for efficient purposes</string>
 </dict>
 </plist>

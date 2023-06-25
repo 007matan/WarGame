@@ -38,7 +38,7 @@ class GamePlayViewController: UIViewController {
     @IBOutlet weak var westSidePointsLBL: UILabel!
     @IBOutlet weak var westSodeNameLBL: UILabel!
     
-    var gameEnd = false
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -66,11 +66,10 @@ class GamePlayViewController: UIViewController {
             card_pack_player = card_pack[card_pack.count/2...card_pack.count - 1] //the easter pack goes to the player
         }
         var i = 0
+        var gameEnd = false
         while i <= card_pack.count/2 - 1 && gameEnd == false{
-        //for i in 0...card_pack.count/2 - 1{
-            //in every sec for five sec sub from the remaining timer in timer 1
         
-               // sleep(1)
+                //sleep(1)
             
             self.timerLBL.text = "4"
             
@@ -91,6 +90,8 @@ class GamePlayViewController: UIViewController {
 
             self.timerLBL.text = "0"
             
+            //Move
+            
             if self.player_side == 0{
                 self.westSideCardsIMG.image = card_pack_player[i]
                 self.eastSideCardIMG.image = card_pack_pc[i + 27]
@@ -105,7 +106,7 @@ class GamePlayViewController: UIViewController {
                     eastSidePointsLBL.text = String(points_pc)
                 }
                 
-                
+
             }else{
                 self.westSideCardsIMG.image = card_pack_pc[i]
                 self.eastSideCardIMG.image = card_pack_player[i + 27]
@@ -124,24 +125,9 @@ class GamePlayViewController: UIViewController {
             //check if win or lose
                 //Take care of win lose the game, new activity
                 //maybe add a button cause move directly to new acivity maybe problematic
-            if(points_player == 10){
-                //SP Winner
-               // winner = checkForNamePrefernce()
-              //  saveWinnerPreference()
-                
-               // savePointsPreference(my_points: 10)
+            if points_player == 10 || points_pc == 10 {
                 //new viewController
                // endGame()
-                gameEnd = true
-            }
-            if(points_pc == 10){
-                //SP Winner
-                //winner = "PC"
-                //saveWinnerPreference()
-                
-                //savePointsPreference(my_points: 10)
-                //new viewController
-                //endGame()
                 gameEnd = true
             }
             //we wait 3 sec
@@ -169,24 +155,20 @@ class GamePlayViewController: UIViewController {
         if(points_pc >= points_player){
             //SP Winner
             winner = "PC"
-            saveWinnerPreference()
-            
+            //SP Points
             savePointsPreference(my_points: points_pc)
             //new viewController
             //endGame()
-            
         }
         else{
-            //SP Winner
             winner = checkForNamePrefernce()
-            saveWinnerPreference()
-            
+            //SP Points
             savePointsPreference(my_points: points_player)
             //new viewController
             //endGame()
-            
         }
-        
+        //SP Winner
+        saveWinnerPreference()
         endGameBTN.isHidden = false
     }
     

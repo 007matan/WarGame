@@ -7,7 +7,9 @@
 
 import UIKit
 import CoreLocation
-class ViewController: UIViewController {
+class ViewController: UIViewController, CLLocationManagerDelegate {
+    
+    private var locationManager:CLLocationManager?
 
     @IBOutlet weak var startGameBTN: UIButton!
     @IBOutlet weak var confirmNameBTN: UIButton!
@@ -20,8 +22,8 @@ class ViewController: UIViewController {
     var playerName = ""
     let defaults = UserDefaults.standard
     
-    var locationManager = CLLocationManager()
-    var lat = 34.67829
+   
+    var lat : Double!
     
     struct Keys{
         static let prefernceKeyName = "prefernceKeyName"
@@ -32,6 +34,11 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        locationManager = CLLocationManager()
+        locationManager?.requestAlwaysAuthorization()
+        locationManager?.startUpdatingLocation()
+        locationManager?.delegate = self
         // check SP
         //in the first runing we need to make all rows as notes except super, and what inside that if
         if checkForNamePrefernce() == "Nun"{
@@ -47,9 +54,26 @@ class ViewController: UIViewController {
             //update showNamrLBL
             showNameLBL.text = "Hi, " + checkForNamePrefernce()
             
-            //getLocation
-            //lat =
             
+            
+            //select side
+            //if lat < middle{
+             //   westSideLBL.textColor = UIColor.green
+           // }
+            //else{
+              //  eastSideLBL.textColor = UIColor.green
+          //  }
+            
+           // saveSidePreference()
+            
+        }
+         
+        
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        if let location = locations.last {
+            lat = location.coordinate.latitude
             //select side
             if lat < middle{
                 westSideLBL.textColor = UIColor.green
@@ -61,8 +85,6 @@ class ViewController: UIViewController {
             saveSidePreference()
             
         }
-         
-        
     }
 
     @IBAction func confirmNameClick(_ sender: UIButton) {
@@ -85,14 +107,14 @@ class ViewController: UIViewController {
             //lat =
             
             //select side
-            if lat < middle{
-                westSideLBL.textColor = UIColor.green
-            }
-            else{
-                eastSideLBL.textColor = UIColor.green
-            }
+            //if lat < middle{
+             //   westSideLBL.textColor = UIColor.green
+            //}
+           // else{
+             //   eastSideLBL.textColor = UIColor.green
+            //}
             
-            saveSidePreference()
+           // saveSidePreference()
         }
         
     }
