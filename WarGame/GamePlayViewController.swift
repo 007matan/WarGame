@@ -109,7 +109,8 @@ class GamePlayViewController: UIViewController {
                 //endGame()
             }
             //SP Winner
-            saveWinnerPreference()
+            //saveWinnerPreference()
+            //openConcViewController() // need a delay wait the winner save in sp
             endGameBTN.isHidden = false
             return
         } else{
@@ -148,7 +149,7 @@ class GamePlayViewController: UIViewController {
                                                 
                                                 //update data, view, ...
                                                 let roundCardsTup = getCardIndices(card1Image: westSideCardsIMG.image!, card2Image: eastSideCardIMG.image!)
-                                                if roundCardsTup.0! > roundCardsTup.1!{
+                                                if roundCardsTup.0! >= roundCardsTup.1!{
                                                     points_pc += 1
                                                     westSidePointsLBL.text = String(points_pc)
                                                 }else{
@@ -200,6 +201,12 @@ class GamePlayViewController: UIViewController {
             
         }
         
+    }
+    
+    func openConcViewController(){
+        let  newConcViewController = ConcViewController()
+        
+        self.present(newConcViewController, animated: true, completion: nil)
     }
     
     func getCardIndices(card1Image: UIImage, card2Image: UIImage) -> (Int?, Int?) {
