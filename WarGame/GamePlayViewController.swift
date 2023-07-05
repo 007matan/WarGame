@@ -38,7 +38,12 @@ class GamePlayViewController: UIViewController {
     @IBOutlet weak var westSidePointsLBL: UILabel!
     @IBOutlet weak var westSodeNameLBL: UILabel!
     
+    var card_pack_player : ArraySlice<UIImage>!
+    var card_pack_pc : ArraySlice<UIImage>!
+    var card_pack : Array<UIImage>!
     
+    var i = 0 //round
+    var gameEnd = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,12 +53,30 @@ class GamePlayViewController: UIViewController {
         
         updatePlayersLabels()
         
+        card_pack = cards_pack_leafs + cards_pack_hearts + cards_pack_jokers + cards_pack_clovers + cards_pack_diamonds
+        card_pack.shuffle()
+        if player_side == 0{
+            card_pack_player = card_pack[0...card_pack.count/2 - 1] //the wester pack goes to the player
+            card_pack_pc = card_pack[card_pack.count/2...card_pack.count - 1]
+        }else{
+            card_pack_pc = card_pack[0...card_pack.count/2 - 1]
+            card_pack_player = card_pack[card_pack.count/2...card_pack.count - 1] //the easter pack goes to the player
+        }
+        //i = 0
+        //gameEnd = false
         
-        mainFunc()
+        DispatchQueue.global(qos: .background).async {
+                    DispatchQueue.main.async {
+                        self.mainFunc()
+                        
+                    }
+                }
+        
         
     }
     
     func mainFunc(){
+        /*
         var card_pack_player : ArraySlice<UIImage>!
         var card_pack_pc : ArraySlice<UIImage>!
         var card_pack = cards_pack_leafs + cards_pack_hearts + cards_pack_jokers + cards_pack_clovers + cards_pack_diamonds
@@ -67,109 +90,116 @@ class GamePlayViewController: UIViewController {
         }
         var i = 0
         var gameEnd = false
-        while i <= card_pack.count/2 - 1 && gameEnd == false{
-        
-                //sleep(1)
-            
-            self.timerLBL.text = "4"
-            
-                //sleep(1)
-            
-            self.timerLBL.text = "3"
-            
-               // sleep(1)
-            
-            self.timerLBL.text = "2"
-            
-               // sleep(1)
-            
-            self.timerLBL.text = "1"
-            
-               // sleep(1)
-            
-
-            self.timerLBL.text = "0"
-            
-            //Move
-            
-            if self.player_side == 0{
-                self.westSideCardsIMG.image = card_pack_player[i]
-                self.eastSideCardIMG.image = card_pack_pc[i + 27]
-                
-                //update data, view, ...
-                let roundCardsTup = getCardIndices(card1Image: westSideCardsIMG.image!, card2Image: eastSideCardIMG.image!)
-                if roundCardsTup.0! > roundCardsTup.1!{
-                    points_player += 1
-                    westSidePointsLBL.text = String(points_player)
-                }else{
-                    points_pc += 1
-                    eastSidePointsLBL.text = String(points_pc)
-                }
-                
-
-            }else{
-                self.westSideCardsIMG.image = card_pack_pc[i]
-                self.eastSideCardIMG.image = card_pack_player[i + 27]
-                
-                //update data, view, ...
-                let roundCardsTup = getCardIndices(card1Image: westSideCardsIMG.image!, card2Image: eastSideCardIMG.image!)
-                if roundCardsTup.0! > roundCardsTup.1!{
-                    points_pc += 1
-                    westSidePointsLBL.text = String(points_player)
-                }else{
-                    points_player += 1
-                    eastSidePointsLBL.text = String(points_pc)
-                }
-            }
-            
-            //check if win or lose
-                //Take care of win lose the game, new activity
-                //maybe add a button cause move directly to new acivity maybe problematic
-            if points_player == 10 || points_pc == 10 {
+         */
+        if i > card_pack.count/2 - 1 || gameEnd == true{
+            //check how the winner, at start was here to close the case of tie
+            if(points_pc >= points_player){
+                //SP Winner
+                winner = "PC"
+                //SP Points
+                savePointsPreference(my_points: points_pc)
                 //new viewController
-               // endGame()
-                gameEnd = true
+                //endGame()
             }
-            //we wait 3 sec
-            self.timerLBL.text = "3"
-            do{
-               // sleep(1)
+            else{
+                winner = checkForNamePrefernce()
+                //SP Points
+                savePointsPreference(my_points: points_player)
+                //new viewController
+                //endGame()
             }
-            self.timerLBL.text = "2"
-            do{
-               // sleep(1)
-            }
-            self.timerLBL.text = "1"            //"Turn off" cards
-            do{
-                //sleep(1)
-            }
-            self.timerLBL.text = "0"
-            self.eastSideCardIMG.image = #imageLiteral(resourceName: "card_back")
-            self.westSideCardsIMG.image = #imageLiteral(resourceName: "card_back")
-            self.timerLBL.text = "5"
+            //SP Winner
+            saveWinnerPreference()
+            endGameBTN.isHidden = false
+            return
+        } else{
             
-            i = i + 1
+            Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) {[weak self] timer in guard let self = self else {return}
+                            self.timerLBL.text = "4"
+                            Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) {[weak self] timer in guard let self = self else {return}
+                                self.timerLBL.text = "3"
+                                Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) {[weak self] timer in guard let self = self else {return}
+                                    self.timerLBL.text = "2"
+                                    Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) {[weak self] timer in guard let self = self else {return}
+                                        self.timerLBL.text = "1"
+                                        Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) {[weak self] timer in guard let self = self else {return}
+                                            self.timerLBL.text = "0"
+                                            
+                                            //Move
+                                            
+                                            if self.player_side == 0{
+                                                self.westSideCardsIMG.image = card_pack_player[i]
+                                                self.eastSideCardIMG.image = card_pack_pc[i + 27]
+                                                
+                                                //update data, view, ...
+                                                let roundCardsTup = getCardIndices(card1Image: westSideCardsIMG.image!, card2Image: eastSideCardIMG.image!)
+                                                if roundCardsTup.0! > roundCardsTup.1!{
+                                                    points_player += 1
+                                                    westSidePointsLBL.text = String(points_player)
+                                                }else{
+                                                    points_pc += 1
+                                                    eastSidePointsLBL.text = String(points_pc)
+                                                }
+                                                
+
+                                            }else{
+                                                self.westSideCardsIMG.image = card_pack_pc[i]
+                                                self.eastSideCardIMG.image = card_pack_player[i + 27]
+                                                
+                                                //update data, view, ...
+                                                let roundCardsTup = getCardIndices(card1Image: westSideCardsIMG.image!, card2Image: eastSideCardIMG.image!)
+                                                if roundCardsTup.0! > roundCardsTup.1!{
+                                                    points_pc += 1
+                                                    westSidePointsLBL.text = String(points_pc)
+                                                }else{
+                                                    points_player += 1
+                                                    eastSidePointsLBL.text = String(points_player)
+                                                }
+                                            }
+                                            
+                                            //check if win or lose
+                                                //Take care of win lose the game, new activity
+                                                //maybe add a button cause move directly to new acivity maybe problematic
+                                            if points_player == 10 || points_pc == 10 {
+                                                //new viewController
+                                               // endGame()
+                                                gameEnd = true
+                                            }
+                                            //we wait 3 sec
+                                                        self.timerLBL.text = "3"
+                                                        Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) {[weak self] timer in guard let self = self else {return}
+                                                            self.timerLBL.text = "2"
+                                                            Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) {[weak self] timer in guard let self = self else {return}
+                                                                self.timerLBL.text = "1"
+                                                                Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) {[weak self] timer in guard let self = self else {return}
+                                                                    self.timerLBL.text = "0"
+                                                                    
+                                                                    self.timerLBL.text = "0"
+                                                                    self.eastSideCardIMG.image = #imageLiteral(resourceName: "card_back")
+                                                                    self.westSideCardsIMG.image = #imageLiteral(resourceName: "card_back")
+                                                                    self.timerLBL.text = "5"
+                                                                    
+                                                                    i = i + 1
+                                                                    mainFunc()
+                                                                    
+                                                                }
+                                                                
+                                                            }
+                                                            
+                                                        }
+                                                                                  }
+                                        
+                                    }
+                                    
+                                }
+                                
+                            }
+                            
+                        }
+            
+            
         }
         
-        //check how the winner, at start was here to close the case of tie
-        if(points_pc >= points_player){
-            //SP Winner
-            winner = "PC"
-            //SP Points
-            savePointsPreference(my_points: points_pc)
-            //new viewController
-            //endGame()
-        }
-        else{
-            winner = checkForNamePrefernce()
-            //SP Points
-            savePointsPreference(my_points: points_player)
-            //new viewController
-            //endGame()
-        }
-        //SP Winner
-        saveWinnerPreference()
-        endGameBTN.isHidden = false
     }
     
     func getCardIndices(card1Image: UIImage, card2Image: UIImage) -> (Int?, Int?) {
